@@ -135,7 +135,7 @@ for (let i = 0; i < formInputs.length; i++) {
 }
 
 
-
+/*
 // page navigation variables
 const navigationLinks = document.querySelectorAll("[data-nav-link]");
 const pages = document.querySelectorAll("[data-page]");
@@ -155,5 +155,33 @@ for (let i = 0; i < navigationLinks.length; i++) {
       }
     }
 
+  });
+} 
+*/
+
+// page navigation variables
+const navigationLinks = document.querySelectorAll("[data-nav-link]");
+const pages = document.querySelectorAll("[data-page]");
+
+// add event to all nav link
+for (let i = 0; i < navigationLinks.length; i++) {
+  navigationLinks[i].addEventListener("click", function () {
+    
+    // Debug: Log what we're comparing
+    console.log("Clicked text:", this.innerHTML.toLowerCase());
+    
+    for (let j = 0; j < pages.length; j++) {
+      console.log("Comparing with:", pages[j].dataset.page);
+      
+      if (this.innerHTML.toLowerCase() === pages[j].dataset.page) {
+        console.log("MATCH FOUND!");
+        pages[j].classList.add("active");
+        navigationLinks[i].classList.add("active");
+        window.scrollTo(0, 0);
+      } else {
+        pages[j].classList.remove("active");
+        navigationLinks[j].classList.remove("active");
+      }
+    }
   });
 }
